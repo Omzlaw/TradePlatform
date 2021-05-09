@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using Abp.Authorization.Users;
 using Abp.Extensions;
+using TradePlatform.Core.TradeInvestment;
 
 namespace TradePlatform.Authorization.Users
 {
@@ -30,5 +31,6 @@ namespace TradePlatform.Authorization.Users
 
             return user;
         }
+        public UserProfile UserProfile {get; set;}
     }
 }
