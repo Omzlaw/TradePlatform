@@ -5,7 +5,7 @@ using TradePlatform.Core.TradeInvestment;
 
 namespace TradePlatform.Application.TradeInvestment.Countries
 {
-    public class CountryAppService : AsyncCrudAppService<Country, CountryDto, int, CountryListDto, CreateCountryDto, EditCountryDto>
+    public class CountryAppService : AsyncCrudAppService<Country, CountryDto, int, CountryListDto, CreateCountryDto, EditCountryDto>, IApplicationService
     {
         public CountryAppService(IRepository<Country> repository)
         : base(repository)

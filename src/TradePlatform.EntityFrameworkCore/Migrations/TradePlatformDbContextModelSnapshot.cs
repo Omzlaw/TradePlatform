@@ -2032,14 +2032,20 @@ namespace TradePlatform.Migrations
                     b.Property<long>("UserId")
                         .HasColumnType("bigint");
 
+                    b.Property<long?>("UserId1")
+                        .HasColumnType("bigint");
+
                     b.HasKey("Id");
 
                     b.HasIndex("PhoneNumber")
                         .IsUnique()
                         .HasFilter("[PhoneNumber] IS NOT NULL");
 
-                    b.HasIndex("UserId")
-                        .IsUnique();
+                    b.HasIndex("UserId");
+
+                    b.HasIndex("UserId1")
+                        .IsUnique()
+                        .HasFilter("[UserId1] IS NOT NULL");
 
                     b.ToTable("UserProfiles");
                 });
@@ -2572,10 +2578,14 @@ namespace TradePlatform.Migrations
             modelBuilder.Entity("TradePlatform.Core.TradeInvestment.UserProfile", b =>
                 {
                     b.HasOne("TradePlatform.Authorization.Users.User", "User")
-                        .WithOne("UserProfile")
-                        .HasForeignKey("TradePlatform.Core.TradeInvestment.UserProfile", "UserId")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .WithMany()
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.NoAction)
                         .IsRequired();
+
+                    b.HasOne("TradePlatform.Authorization.Users.User", null)
+                        .WithOne("UserProfile")
+                        .HasForeignKey("TradePlatform.Core.TradeInvestment.UserProfile", "UserId1");
 
                     b.Navigation("User");
                 });
