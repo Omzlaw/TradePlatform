@@ -9,12 +9,16 @@ namespace TradePlatform.Application.TradeInvestment.ReceivingModes.DTO
     public class EditReceivingModeDto : EntityDto<int>
     {
         [Required]
-        public double Amount { get; set;}
+        public string Type { get; set; }
         [Required]
-        public string Status { get; set;}
+        public double MinimumAmount { get; set; }
         [Required]
-        public string PaymentMode { get; set; }
+        public double MaximumAmount { get; set; }
         [Required]
-        public int UserProfileId { get; set; }
+        public double FixedCharges { get; set; }
+        [Required]
+        public string ChargesPercentage { get; set; }
+        [Required]
+        public string Duration { get; set; }
     }
 }

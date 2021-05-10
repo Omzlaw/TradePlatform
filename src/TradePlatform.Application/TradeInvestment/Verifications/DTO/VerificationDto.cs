@@ -7,12 +7,7 @@ namespace TradePlatform.Application.TradeInvestment.Verifications.DTO
     [AutoMap(typeof(Verification))]
     public class VerificationDto : EntityDto<int>
     {
-        public double Amount { get; set;}
-        
-        public string Status { get; set;}
-        
-        public string PaymentMode { get; set; }
-        
+        public bool VerificationStatus { get; set; }
         public int UserProfileId { get; set; }
     }
 }

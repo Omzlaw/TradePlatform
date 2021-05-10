@@ -123,6 +123,11 @@ namespace TradePlatform.EntityFrameworkCore
             .WithMany(u => u.Withdrawals)
             .HasForeignKey(p => p.UserProfileId)
             .OnDelete(DeleteBehavior.NoAction);
+            modelBuilder.Entity<Withdrawal>()
+            .HasOne(p => p.ReceivingMode)
+            .WithMany()
+            .HasForeignKey(p => p.ReceivingModeId)
+            .OnDelete(DeleteBehavior.NoAction);
             modelBuilder.Entity<WithdrawalInfo>()
             .HasOne(p => p.UserProfile)
             .WithMany(u => u.WithdrawalInfos)

@@ -4,12 +4,9 @@ namespace TradePlatform.Application.TradeInvestment.MiscellaneousTransactions.DT
 {
     public class MiscellaneousTransactionListDto : EntityDto<int>
     {
-        public double Amount { get; set;}
-        
-        public string Status { get; set;}
-        
-        public string PaymentMode { get; set; }
-        
+        public double Amount { get; set; }
+        public int PackageId { get; set; }
+        public int InvestmentPlanId { get; set; }
         public int UserProfileId { get; set; }
     }
 }

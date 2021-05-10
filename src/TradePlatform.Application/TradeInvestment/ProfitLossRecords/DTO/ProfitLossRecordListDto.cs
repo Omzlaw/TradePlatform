@@ -4,12 +4,9 @@ namespace TradePlatform.Application.TradeInvestment.ProfitLossRecordss.DTO
 {
     public class ProfitLossRecordsListDto : EntityDto<int>
     {
-        public double Amount { get; set;}
-        
-        public string Status { get; set;}
-        
-        public string PaymentMode { get; set; }
-        
+        public double Amount { get; set; }
+        public string Type { get; set; }
+        public int InvestmentPlanId { get; set; }
         public int UserProfileId { get; set; }
     }
 }

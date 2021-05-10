@@ -10,6 +10,7 @@ namespace TradePlatform.Core.TradeInvestment
         public double Charges { get; set; }
         public string Status { get; set; }
         public int ReceivingModeId { get; set; }
+        public ReceivingMode ReceivingMode { get; set; }  
         public int UserProfileId { get; set; }
         public UserProfile UserProfile { get; set; }
         public long? CreatorUserId { get; set; }

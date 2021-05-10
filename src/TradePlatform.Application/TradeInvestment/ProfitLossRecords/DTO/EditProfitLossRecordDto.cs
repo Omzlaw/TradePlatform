@@ -9,11 +9,11 @@ namespace TradePlatform.Application.TradeInvestment.ProfitLossRecordss.DTO
     public class EditProfitLossRecordsDto : EntityDto<int>
     {
         [Required]
-        public double Amount { get; set;}
+        public double Amount { get; set; }
         [Required]
-        public string Status { get; set;}
+        public string Type { get; set; }
         [Required]
-        public string PaymentMode { get; set; }
+        public int InvestmentPlanId { get; set; }
         [Required]
         public int UserProfileId { get; set; }
     }

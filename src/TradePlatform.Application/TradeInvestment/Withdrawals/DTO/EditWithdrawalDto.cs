@@ -9,11 +9,13 @@ namespace TradePlatform.Application.TradeInvestment.Withdrawals.DTO
     public class EditWithdrawalDto : EntityDto<int>
     {
         [Required]
-        public double Amount { get; set;}
+        public double AmountRequested { get; set; }
         [Required]
-        public string Status { get; set;}
+        public double Charges { get; set; }
         [Required]
-        public string PaymentMode { get; set; }
+        public string Status { get; set; }
+        [Required]
+        public int ReceivingModeId { get; set; }
         [Required]
         public int UserProfileId { get; set; }
     }

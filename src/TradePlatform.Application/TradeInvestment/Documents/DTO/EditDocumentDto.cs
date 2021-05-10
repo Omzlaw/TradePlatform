@@ -9,11 +9,11 @@ namespace TradePlatform.Application.TradeInvestment.Documents.DTO
     public class EditDocumentDto : EntityDto<int>
     {
         [Required]
-        public double Amount { get; set;}
+        public string Type { get; set; }
         [Required]
-        public string Status { get; set;}
+        public byte[] Content { get; set; }
         [Required]
-        public string PaymentMode { get; set; }
+        public string DocExtension { get; set; }
         [Required]
         public int UserProfileId { get; set; }
     }

@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace TradePlatform.Migrations
 {
-    public partial class intial : Migration
+    public partial class initial : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -1168,7 +1168,8 @@ namespace TradePlatform.Migrations
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     VerificationStatus = table.Column<bool>(type: "bit", nullable: false),
-                    UserProfileId = table.Column<int>(type: "int", nullable: false)
+                    UserProfileId = table.Column<int>(type: "int", nullable: false),
+                    UserProfileId1 = table.Column<int>(type: "int", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -1178,6 +1179,12 @@ namespace TradePlatform.Migrations
                         column: x => x.UserProfileId,
                         principalTable: "UserProfiles",
                         principalColumn: "Id");
+                    table.ForeignKey(
+                        name: "FK_Verifications_UserProfiles_UserProfileId1",
+                        column: x => x.UserProfileId1,
+                        principalTable: "UserProfiles",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
                 });
 
             migrationBuilder.CreateTable(
@@ -1226,6 +1233,11 @@ namespace TradePlatform.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Withdrawals", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_Withdrawals_ReceivingModes_ReceivingModeId",
+                        column: x => x.ReceivingModeId,
+                        principalTable: "ReceivingModes",
+                        principalColumn: "Id");
                     table.ForeignKey(
                         name: "FK_Withdrawals_UserProfiles_UserProfileId",
                         column: x => x.UserProfileId,
@@ -1731,6 +1743,13 @@ namespace TradePlatform.Migrations
                 column: "UserProfileId");
 
             migrationBuilder.CreateIndex(
+                name: "IX_Verifications_UserProfileId1",
+                table: "Verifications",
+                column: "UserProfileId1",
+                unique: true,
+                filter: "[UserProfileId1] IS NOT NULL");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_WithdrawalInfos_AccountName",
                 table: "WithdrawalInfos",
                 column: "AccountName",
@@ -1768,6 +1787,11 @@ namespace TradePlatform.Migrations
                 name: "IX_WithdrawalInfos_UserProfileId",
                 table: "WithdrawalInfos",
                 column: "UserProfileId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Withdrawals_ReceivingModeId",
+                table: "Withdrawals",
+                column: "ReceivingModeId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Withdrawals_UserProfileId",
@@ -1877,9 +1901,6 @@ namespace TradePlatform.Migrations
                 name: "ProfitLossRecords");
 
             migrationBuilder.DropTable(
-                name: "ReceivingModes");
-
-            migrationBuilder.DropTable(
                 name: "Referrals");
 
             migrationBuilder.DropTable(
@@ -1911,6 +1932,9 @@ namespace TradePlatform.Migrations
 
             migrationBuilder.DropTable(
                 name: "Packages");
+
+            migrationBuilder.DropTable(
+                name: "ReceivingModes");
 
             migrationBuilder.DropTable(
                 name: "AbpDynamicProperties");

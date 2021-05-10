@@ -10,8 +10,8 @@ using TradePlatform.EntityFrameworkCore;
 namespace TradePlatform.Migrations
 {
     [DbContext(typeof(TradePlatformDbContext))]
-    [Migration("20210509222926_intial")]
-    partial class intial
+    [Migration("20210510233409_initial")]
+    partial class initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -2062,12 +2062,19 @@ namespace TradePlatform.Migrations
                     b.Property<int>("UserProfileId")
                         .HasColumnType("int");
 
+                    b.Property<int?>("UserProfileId1")
+                        .HasColumnType("int");
+
                     b.Property<bool>("VerificationStatus")
                         .HasColumnType("bit");
 
                     b.HasKey("Id");
 
                     b.HasIndex("UserProfileId");
+
+                    b.HasIndex("UserProfileId1")
+                        .IsUnique()
+                        .HasFilter("[UserProfileId1] IS NOT NULL");
 
                     b.ToTable("Verifications");
                 });
@@ -2116,6 +2123,8 @@ namespace TradePlatform.Migrations
                         .HasColumnType("int");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("ReceivingModeId");
 
                     b.HasIndex("UserProfileId");
 
@@ -2595,21 +2604,33 @@ namespace TradePlatform.Migrations
             modelBuilder.Entity("TradePlatform.Core.TradeInvestment.Verification", b =>
                 {
                     b.HasOne("TradePlatform.Core.TradeInvestment.UserProfile", "UserProfile")
-                        .WithMany("Verifications")
+                        .WithMany()
                         .HasForeignKey("UserProfileId")
                         .OnDelete(DeleteBehavior.NoAction)
                         .IsRequired();
+
+                    b.HasOne("TradePlatform.Core.TradeInvestment.UserProfile", null)
+                        .WithOne("Verification")
+                        .HasForeignKey("TradePlatform.Core.TradeInvestment.Verification", "UserProfileId1");
 
                     b.Navigation("UserProfile");
                 });
 
             modelBuilder.Entity("TradePlatform.Core.TradeInvestment.Withdrawal", b =>
                 {
+                    b.HasOne("TradePlatform.Core.TradeInvestment.ReceivingMode", "ReceivingMode")
+                        .WithMany()
+                        .HasForeignKey("ReceivingModeId")
+                        .OnDelete(DeleteBehavior.NoAction)
+                        .IsRequired();
+
                     b.HasOne("TradePlatform.Core.TradeInvestment.UserProfile", "UserProfile")
                         .WithMany("Withdrawals")
                         .HasForeignKey("UserProfileId")
                         .OnDelete(DeleteBehavior.NoAction)
                         .IsRequired();
+
+                    b.Navigation("ReceivingMode");
 
                     b.Navigation("UserProfile");
                 });
@@ -2743,7 +2764,7 @@ namespace TradePlatform.Migrations
 
                     b.Navigation("SubscriptionTrades");
 
-                    b.Navigation("Verifications");
+                    b.Navigation("Verification");
 
                     b.Navigation("WithdrawalInfos");
 

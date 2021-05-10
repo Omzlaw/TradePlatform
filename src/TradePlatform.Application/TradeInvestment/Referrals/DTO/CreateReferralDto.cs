@@ -1,3 +1,4 @@
+using System;
 using System.ComponentModel.DataAnnotations;
 
 namespace TradePlatform.Application.TradeInvestment.Referrals.DTO
@@ -5,11 +6,15 @@ namespace TradePlatform.Application.TradeInvestment.Referrals.DTO
     public class CreateReferralDto
     {
         [Required]
-        public double Amount { get; set;}
+        public string ClientName { get; set; }
         [Required]
-        public string Status { get; set;}
+        public string RefLevel { get; set; }
         [Required]
-        public string PaymentMode { get; set; }
+        public string Parent { get; set; }
+        [Required]
+        public string ClientStatus { get; set; }
+        [Required]
+        public DateTime DateRegistered { get; set; }
         [Required]
         public int UserProfileId { get; set; }
     }

@@ -9,11 +9,11 @@ namespace TradePlatform.Application.TradeInvestment.MiscellaneousTransactions.DT
     public class EditMiscellaneousTransactionDto : EntityDto<int>
     {
         [Required]
-        public double Amount { get; set;}
+        public double Amount { get; set; }
         [Required]
-        public string Status { get; set;}
+        public int PackageId { get; set; }
         [Required]
-        public string PaymentMode { get; set; }
+        public int InvestmentPlanId { get; set; }
         [Required]
         public int UserProfileId { get; set; }
     }

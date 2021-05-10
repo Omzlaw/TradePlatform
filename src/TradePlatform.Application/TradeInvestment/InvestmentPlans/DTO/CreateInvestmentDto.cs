@@ -5,12 +5,18 @@ namespace TradePlatform.Application.TradeInvestment.InvestmentPlans.DTO
     public class CreateInvestmentPlanDto
     {
         [Required]
-        public double Amount { get; set;}
+        public string PlanName { get; set; }
         [Required]
-        public string Status { get; set;}
+        public double MinimumPossibleDeposit { get; set; }
         [Required]
-        public string PaymentMode { get; set; }
+        public double MaximumPossibleDeposit { get; set; }
         [Required]
-        public int UserProfileId { get; set; }
+        public double MinimumReturn { get; set; }
+        [Required]
+        public double MaximumReturn { get; set; }
+        [Required]
+        public double GiftBonus { get; set; }
+        [Required]
+        public string Duration { get; set; }
     }
 }

@@ -1,3 +1,4 @@
+using System;
 using System.ComponentModel.DataAnnotations;
 using Abp.Application.Services.Dto;
 using Abp.AutoMapper;
@@ -9,12 +10,14 @@ namespace TradePlatform.Application.TradeInvestment.UserProfiles.DTO
     public class EditUserProfileDto : EntityDto<int>
     {
         [Required]
-        public double Amount { get; set;}
+        public DateTime DOB { get; set; }
         [Required]
-        public string Status { get; set;}
+        public string PhoneNumber { get; set; }
         [Required]
-        public string PaymentMode { get; set; }
+        public string Address { get; set; }
         [Required]
-        public int UserProfileId { get; set; }
+        public int CountryId { get; set; }
+        [Required]
+        public long UserId {get; set;}
     }
 }
