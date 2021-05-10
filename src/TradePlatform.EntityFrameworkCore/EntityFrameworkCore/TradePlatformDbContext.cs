@@ -115,7 +115,7 @@ namespace TradePlatform.EntityFrameworkCore
             .OnDelete(DeleteBehavior.NoAction);
             modelBuilder.Entity<Verification>()
             .HasOne(p => p.UserProfile)
-            .WithMany(u => u.Verifications)
+            .WithMany()
             .HasForeignKey(p => p.UserProfileId)
             .OnDelete(DeleteBehavior.NoAction);
             modelBuilder.Entity<Withdrawal>()

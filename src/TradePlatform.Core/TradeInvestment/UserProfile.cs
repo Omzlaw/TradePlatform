@@ -22,7 +22,7 @@ namespace TradePlatform.Core.TradeInvestment
         public ICollection<Package> Packages { get; set; }
         public ICollection<ProfitLossRecord> ProfitLossRecords { get; set; }
         public ICollection<Referral> Referrals { get; set; }
-        public ICollection<Verification> Verifications { get; set; }
+        public Verification Verification { get; set; }
         public ICollection<SubscriptionTrade> SubscriptionTrades { get; set; }
         public ICollection<Withdrawal> Withdrawals { get; set; }
         public ICollection<WithdrawalInfo> WithdrawalInfos { get; set; }
