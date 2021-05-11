@@ -2,14 +2,17 @@ using System.Collections.Generic;
 using System.Threading.Tasks;
 using Abp.Application.Services;
 using Abp.Application.Services.Dto;
+using Abp.Authorization;
 using Abp.Domain.Repositories;
 using AutoMapper;
 using TradePlatform.Application.TradeInvestment.Documents.DTO;
+using TradePlatform.Authorization;
 using TradePlatform.Core.TradeInvestment;
 using TradePlatform.Core.TradeInvestment.Documents;
 
 namespace TradePlatform.Application.TradeInvestment.Documents
 {
+    [AbpAuthorize(PermissionNames.Pages_Documents)]
     public class DocumentAppService : AsyncCrudAppService<Document, DocumentDto, int, DocumentListDto, CreateDocumentDto, EditDocumentDto>, IDocumentAppService
     {
         private readonly IDocumentManager _documentManager;

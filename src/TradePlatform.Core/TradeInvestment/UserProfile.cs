@@ -12,6 +12,7 @@ namespace TradePlatform.Core.TradeInvestment
         public string PhoneNumber { get; set; }
         public string Address { get; set; }
         public int CountryId { get; set; }
+        public Country Country { get; set; }
         public long UserId {get; set;}
         public User User {get; set;}
         [NotMapped]

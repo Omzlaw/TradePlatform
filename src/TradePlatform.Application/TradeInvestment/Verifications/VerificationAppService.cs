@@ -2,15 +2,18 @@ using System.Collections.Generic;
 using System.Threading.Tasks;
 using Abp.Application.Services;
 using Abp.Application.Services.Dto;
+using Abp.Authorization;
 using Abp.Domain.Entities;
 using Abp.Domain.Repositories;
 using AutoMapper;
 using TradePlatform.Application.TradeInvestment.Verifications.DTO;
+using TradePlatform.Authorization;
 using TradePlatform.Core.TradeInvestment;
 using TradePlatform.Core.TradeInvestment.Verifications;
 
 namespace TradePlatform.Application.TradeInvestment.Verifications
 {
+    [AbpAuthorize(PermissionNames.Pages_Verifications)]
     public class VerificationAppService : AsyncCrudAppService<Verification, VerificationDto, int, VerificationListDto, CreateVerificationDto, EditVerificationDto>, IVerificationAppService
     {
         private readonly IVerificationManager _verificationManager;

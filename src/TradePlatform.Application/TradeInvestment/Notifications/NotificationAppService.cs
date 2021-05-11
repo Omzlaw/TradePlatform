@@ -2,14 +2,17 @@ using System.Collections.Generic;
 using System.Threading.Tasks;
 using Abp.Application.Services;
 using Abp.Application.Services.Dto;
+using Abp.Authorization;
 using Abp.Domain.Repositories;
 using AutoMapper;
 using TradePlatform.Application.TradeInvestment.Notifications.DTO;
+using TradePlatform.Authorization;
 using TradePlatform.Core.TradeInvestment;
 using TradePlatform.Core.TradeInvestment.Notifications;
 
 namespace TradePlatform.Application.TradeInvestment.Notifications
 {
+    [AbpAuthorize(PermissionNames.Pages_Notifications)]
     public class NotificationAppService : AsyncCrudAppService<Notification, NotificationDto, int, NotificationListDto, CreateNotificationDto, EditNotificationDto>, INotificationAppService
     {
         private readonly INotificationManager _notificationManager;

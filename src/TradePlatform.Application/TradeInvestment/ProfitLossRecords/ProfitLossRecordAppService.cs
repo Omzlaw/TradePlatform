@@ -2,14 +2,17 @@ using System.Collections.Generic;
 using System.Threading.Tasks;
 using Abp.Application.Services;
 using Abp.Application.Services.Dto;
+using Abp.Authorization;
 using Abp.Domain.Repositories;
 using AutoMapper;
 using TradePlatform.Application.TradeInvestment.ProfitLossRecordss.DTO;
+using TradePlatform.Authorization;
 using TradePlatform.Core.TradeInvestment;
 using TradePlatform.Core.TradeInvestment.ProfitLossRecords;
 
 namespace TradePlatform.Application.TradeInvestment.ProfitLossRecordss
 {
+    [AbpAuthorize(PermissionNames.Pages_ProfitLossRecords)]
     public class ProfitLossRecordsAppService : AsyncCrudAppService<ProfitLossRecord, ProfitLossRecordsDto, int, ProfitLossRecordsListDto, CreateProfitLossRecordsDto, EditProfitLossRecordsDto>, IProfitLossRecordsAppService
     {
         private readonly IProfitLossRecordManager _profitLossRecordsManager;

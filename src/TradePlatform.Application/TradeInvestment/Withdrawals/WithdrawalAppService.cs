@@ -2,14 +2,17 @@ using System.Collections.Generic;
 using System.Threading.Tasks;
 using Abp.Application.Services;
 using Abp.Application.Services.Dto;
+using Abp.Authorization;
 using Abp.Domain.Repositories;
 using AutoMapper;
 using TradePlatform.Application.TradeInvestment.Withdrawals.DTO;
+using TradePlatform.Authorization;
 using TradePlatform.Core.TradeInvestment;
 using TradePlatform.Core.TradeInvestment.Withdrawals;
 
 namespace TradePlatform.Application.TradeInvestment.Withdrawals
 {
+    [AbpAuthorize(PermissionNames.Pages_Withdrawals)]
     public class WithdrawalAppService : AsyncCrudAppService<Withdrawal, WithdrawalDto, int, WithdrawalListDto, CreateWithdrawalDto, EditWithdrawalDto>, IWithdrawalAppService
     {
         private readonly IWithdrawalManager _withdrawalManager;

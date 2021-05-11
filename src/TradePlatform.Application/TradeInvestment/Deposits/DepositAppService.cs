@@ -2,14 +2,17 @@ using System.Collections.Generic;
 using System.Threading.Tasks;
 using Abp.Application.Services;
 using Abp.Application.Services.Dto;
+using Abp.Authorization;
 using Abp.Domain.Repositories;
 using AutoMapper;
 using TradePlatform.Application.TradeInvestment.Deposits.DTO;
+using TradePlatform.Authorization;
 using TradePlatform.Core.TradeInvestment;
 using TradePlatform.Core.TradeInvestment.Deposits;
 
 namespace TradePlatform.Application.TradeInvestment.Deposits
 {
+    [AbpAuthorize(PermissionNames.Pages_Deposits)]
     public class DepositAppService : AsyncCrudAppService<Deposit, DepositDto, int, DepositListDto, CreateDepositDto, EditDepositDto>, IDepositAppService
     {
         private readonly IDepositManager _depositManager;

@@ -798,6 +798,30 @@ namespace TradePlatform.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "AbpWebhookSendAttempts",
+                columns: table => new
+                {
+                    Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    WebhookEventId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    WebhookSubscriptionId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    Response = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    ResponseStatusCode = table.Column<int>(type: "int", nullable: true),
+                    CreationTime = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    LastModificationTime = table.Column<DateTime>(type: "datetime2", nullable: true),
+                    TenantId = table.Column<int>(type: "int", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_AbpWebhookSendAttempts", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_AbpWebhookSendAttempts_AbpWebhookEvents_WebhookEventId",
+                        column: x => x.WebhookEventId,
+                        principalTable: "AbpWebhookEvents",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "UserProfiles",
                 columns: table => new
                 {
@@ -824,30 +848,11 @@ namespace TradePlatform.Migrations
                         principalTable: "AbpUsers",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Restrict);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "AbpWebhookSendAttempts",
-                columns: table => new
-                {
-                    Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                    WebhookEventId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                    WebhookSubscriptionId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                    Response = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    ResponseStatusCode = table.Column<int>(type: "int", nullable: true),
-                    CreationTime = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    LastModificationTime = table.Column<DateTime>(type: "datetime2", nullable: true),
-                    TenantId = table.Column<int>(type: "int", nullable: true)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_AbpWebhookSendAttempts", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_AbpWebhookSendAttempts_AbpWebhookEvents_WebhookEventId",
-                        column: x => x.WebhookEventId,
-                        principalTable: "AbpWebhookEvents",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                        name: "FK_UserProfiles_Countries_CountryId",
+                        column: x => x.CountryId,
+                        principalTable: "Countries",
+                        principalColumn: "Id");
                 });
 
             migrationBuilder.CreateTable(
@@ -1719,6 +1724,11 @@ namespace TradePlatform.Migrations
                 column: "UserProfileId");
 
             migrationBuilder.CreateIndex(
+                name: "IX_UserProfiles_CountryId",
+                table: "UserProfiles",
+                column: "CountryId");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_UserProfiles_PhoneNumber",
                 table: "UserProfiles",
                 column: "PhoneNumber",
@@ -1883,9 +1893,6 @@ namespace TradePlatform.Migrations
                 name: "AbpWebhookSubscriptions");
 
             migrationBuilder.DropTable(
-                name: "Countries");
-
-            migrationBuilder.DropTable(
                 name: "Deposits");
 
             migrationBuilder.DropTable(
@@ -1950,6 +1957,9 @@ namespace TradePlatform.Migrations
 
             migrationBuilder.DropTable(
                 name: "AbpUsers");
+
+            migrationBuilder.DropTable(
+                name: "Countries");
         }
     }
 }

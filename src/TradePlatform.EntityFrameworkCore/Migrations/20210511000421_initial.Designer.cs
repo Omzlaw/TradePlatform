@@ -10,7 +10,7 @@ using TradePlatform.EntityFrameworkCore;
 namespace TradePlatform.Migrations
 {
     [DbContext(typeof(TradePlatformDbContext))]
-    [Migration("20210510233409_initial")]
+    [Migration("20210511000421_initial")]
     partial class initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -2039,6 +2039,8 @@ namespace TradePlatform.Migrations
 
                     b.HasKey("Id");
 
+                    b.HasIndex("CountryId");
+
                     b.HasIndex("PhoneNumber")
                         .IsUnique()
                         .HasFilter("[PhoneNumber] IS NOT NULL");
@@ -2588,6 +2590,12 @@ namespace TradePlatform.Migrations
 
             modelBuilder.Entity("TradePlatform.Core.TradeInvestment.UserProfile", b =>
                 {
+                    b.HasOne("TradePlatform.Core.TradeInvestment.Country", "Country")
+                        .WithMany()
+                        .HasForeignKey("CountryId")
+                        .OnDelete(DeleteBehavior.NoAction)
+                        .IsRequired();
+
                     b.HasOne("TradePlatform.Authorization.Users.User", "User")
                         .WithMany()
                         .HasForeignKey("UserId")
@@ -2597,6 +2605,8 @@ namespace TradePlatform.Migrations
                     b.HasOne("TradePlatform.Authorization.Users.User", null)
                         .WithOne("UserProfile")
                         .HasForeignKey("TradePlatform.Core.TradeInvestment.UserProfile", "UserId1");
+
+                    b.Navigation("Country");
 
                     b.Navigation("User");
                 });

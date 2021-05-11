@@ -138,6 +138,11 @@ namespace TradePlatform.EntityFrameworkCore
             .WithMany()
             .HasForeignKey(p => p.UserId)
             .OnDelete(DeleteBehavior.NoAction);
+            modelBuilder.Entity<UserProfile>()
+            .HasOne(p => p.Country)
+            .WithMany()
+            .HasForeignKey(p => p.CountryId)
+            .OnDelete(DeleteBehavior.NoAction);
         }
     }
 }

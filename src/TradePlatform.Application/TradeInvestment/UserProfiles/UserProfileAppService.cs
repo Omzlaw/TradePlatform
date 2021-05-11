@@ -2,15 +2,18 @@ using System.Collections.Generic;
 using System.Threading.Tasks;
 using Abp.Application.Services;
 using Abp.Application.Services.Dto;
+using Abp.Authorization;
 using Abp.Domain.Entities;
 using Abp.Domain.Repositories;
 using AutoMapper;
 using TradePlatform.Application.TradeInvestment.UserProfiles.DTO;
+using TradePlatform.Authorization;
 using TradePlatform.Core.TradeInvestment;
 using TradePlatform.Core.TradeInvestment.UserProfiles;
 
 namespace TradePlatform.Application.TradeInvestment.UserProfiles
 {
+    [AbpAuthorize(PermissionNames.Pages_UserProfiles)]
     public class UserProfileAppService : AsyncCrudAppService<UserProfile, UserProfileDto, int, UserProfileListDto, CreateUserProfileDto, EditUserProfileDto>, IUserProfileAppService
     {
         private readonly IUserProfileManager _userProfileManager;
